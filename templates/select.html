@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Columns and Chart Type</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Select Columns and Chart Type</h1>
+        <form method="POST">
+            <input type="hidden" name="filepath" value="{{ filepath }}">
+            <div class="form-group">
+                <label for="x_col">X Column:</label>
+                <select name="x_col" id="x_col" class="form-control">
+                    {% for col in columns %}
+                    <option value="{{ col }}">{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="y_col">Y Column(s) (Hold Ctrl/Cmd to select multiple):</label>
+                <select name="y_col" id="y_col" multiple class="form-control">
+                    {% for col in columns %}
+                    <option value="{{ col }}">{{ col }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for "chart_type">Chart Type:</label>
+                <select name="chart_type" id="chart_type" class="form-control">
+                    <option value="scatter">Scatter Plot</option>
+                    <option value="line">Line Chart</option>
+                    <option value="bar">Bar Chart</option>
+                    <option value="histogram">Histogram</option>
+                    <option value="heatmap">Heatmap</option>
+                </select>
+            </div>
+            <input type="submit" value="Generate Plot" class="btn btn-primary">
+        </form>
+    </div>
+</body>
+</html>

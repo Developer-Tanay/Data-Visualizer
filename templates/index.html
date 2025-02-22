@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Visualizer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Your Excel File</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept=".xlsx, .xls" class="form-control">
+            <input type="submit" value="Upload" class="btn btn-primary mt-2">
+        </form>
+    </div>
+</body>
+</html>
