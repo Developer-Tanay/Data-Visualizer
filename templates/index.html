@@ -1,19 +1,46 @@
+<!-- templates/index.html -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Visualizer</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>Upload Your Excel File</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <input type="file" name="file" accept=".xlsx, .xls" class="form-control">
-            <input type="submit" value="Upload" class="btn btn-primary mt-2">
+<body class="bg-gradient-to-r from-gray-900 to-gray-800 flex flex-col items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-lg rounded-lg p-6 w-full max-w-md text-center animate-fadeIn">
+        <h1 class="text-2xl font-bold text-gray-800">Upload Your Excel File</h1>
+        
+        <form method="POST" enctype="multipart/form-data" class="mt-4">
+            <label class="block w-full border-2 border-dashed border-blue-500 text-gray-500 py-8 px-4 rounded-lg cursor-pointer bg-gray-100 hover:bg-blue-100 transition duration-300 ease-in-out">
+                <input type="file" name="file" accept=".xlsx, .xls" class="hidden" id="fileInput">
+                <span id="fileLabel">Click to upload a file</span>
+            </label>
+
+            <input type="submit" value="Upload" class="w-full mt-4 bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-300">
         </form>
     </div>
+
+    <footer class="w-full text-center text-gray-300 text-sm py-4 mt-4 bg-gray-900 fixed bottom-0 flex justify-center items-center gap-2">
+        &copy; 2025 Data Visualizer. All Rights Reserved.
+        <a href="https://github.com/Developer-Tanay/Data-Visualizer" target="_blank" class="flex items-center gap-1 text-blue-400 hover:text-blue-500 transition">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill-rule="evenodd" d="M12 0C5.37 0 0 5.373 0 12c0 5.303 3.438 9.8 8.207 11.385.6.113.793-.26.793-.577v-2.01c-3.338.727-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.757-1.333-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.235 1.84 1.235 1.07 1.835 2.805 1.305 3.49.997.108-.775.418-1.305.76-1.605-2.665-.303-5.466-1.333-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.123-.303-.535-1.523.117-3.17 0 0 1.008-.322 3.3 1.23a11.507 11.507 0 0 1 3-.404c1.02.005 2.046.138 3 .404 2.292-1.552 3.3-1.23 3.3-1.23.652 1.647.24 2.867.118 3.17.768.84 1.235 1.91 1.235 3.22 0 4.61-2.805 5.625-5.475 5.92.43.37.81 1.096.81 2.21v3.282c0 .32.192.695.8.577C20.565 21.795 24 17.3 24 12c0-6.627-5.373-12-12-12z" clip-rule="evenodd"/>
+            </svg>
+            Open Source on GitHub
+        </a>
+    </footer>
+
+    <script>
+        const fileInput = document.getElementById("fileInput");
+        const fileLabel = document.getElementById("fileLabel");
+
+        fileInput.addEventListener("change", function() {
+            fileLabel.textContent = this.files.length > 0 ? this.files[0].name : "Click to upload a file";
+        });
+    </script>
+
 </body>
 </html>
